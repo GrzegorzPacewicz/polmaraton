@@ -1,0 +1,33 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:         #08101E;
+  --surface:    #0F1B2D;
+  --card:       #142035;
+  --border:     #1C2E45;
+  --cyan:       #00D4FF;
+  --cyan-dim:   rgba(0,212,255,0.12);
+  --orange:     #FF6B35;
+  --orange-dim: rgba(255,107,53,0.12);
+  --green:      #3DD68C;
+  --green-dim:  rgba(61,214,140,0.1);
+  --yellow:     #FFD166;
+  --yellow-dim: rgba(255,209,102,0.12);
+  --red:        #FF4D6D;
+  --red-dim:    rgba(255,77,109,0.1);
+  --text:       #E2EAF4;
+  --muted:      #4E6A8A;
+  --subtle:     #243447;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

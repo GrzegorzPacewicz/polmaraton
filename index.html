@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Półmaraton Gdański 2026 — Plan Treningowy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/plan.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="eyebrow">Plan treningowy · Daniels + ZB</div>
+  <h1>Półmaraton<br><em>Gdańsk</em> 2026</h1>
+
+  <div class="header-meta">
+    <div class="meta-item">
+      <span class="meta-label">Start</span>
+      <span class="meta-value">27.09.2026</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Cel</span>
+      <span class="meta-value accent">sub 1:50</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Tygodnie</span>
+      <span class="meta-value">16</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Baza</span>
+      <span class="meta-value">30–40 km</span>
+    </div>
+  </div>
+
+  <div class="countdown">
+    <div>
+      <div style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:2px">do startu</div>
+    </div>
+    <div class="cd-num" id="cd-days">—</div>
+    <div class="cd-unit">dni</div>
+    <div class="cd-sep">·</div>
+    <div class="cd-num" id="cd-weeks">—</div>
+    <div class="cd-unit">tyg</div>
+  </div>
+</header>
+
+<div class="legend">
+  <div class="legend-title">Skróty</div>
+  <div class="legend-grid">
+    <span class="legend-chip chip-bs">BS — bieg spokojny 6:20–6:30/km</span>
+    <span class="legend-chip chip-zb">ZB — zabawa biegowa (interwały)</span>
+    <span class="legend-chip chip-bnp">BNP — bieg narastający</span>
+    <span class="legend-chip chip-p">P — przebieżki 80–100m</span>
+    <span class="legend-chip chip-test">🏁 — test / wyścig</span>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-labels">
+    <span>Postęp</span>
+    <span id="prog-text">0 / 16 tygodni</span>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" id="prog-fill" style="width:0%"></div>
+  </div>
+</div>
+
+<main class="plan" id="plan"></main>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
