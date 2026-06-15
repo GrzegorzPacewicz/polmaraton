@@ -1,5 +1,5 @@
-const PLAN_START = new Date('2026-06-16');
-const RACE_DATE  = new Date('2026-09-27');
+const PLAN_START = new Date(2026, 5, 8);
+const RACE_DATE  = new Date(2026, 8, 27);
 
 export function getCurrentWeekIdx() {
   const today = new Date(); today.setHours(0,0,0,0);

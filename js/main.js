@@ -5,6 +5,9 @@ import { updateCountdown } from './countdown.js';
 updateCountdown();
 renderAll();
 
+const current = document.querySelector('.week-card.current');
+if (current) current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
 document.getElementById('plan').addEventListener('click', e => {
   const header = e.target.closest('[data-action="toggle-week"]');
   if (header) {
