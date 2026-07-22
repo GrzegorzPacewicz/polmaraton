@@ -43,7 +43,7 @@ export const phases = [
           'Sob': '30 min BS + 6x100m przebieżki\n(nogi świeże – test w niedzielę)',
           'Nd': '12km BNP:\n3km@6:10 + 2km@5:50\n+ 2km@5:35 + 2km@5:25 + 3km@5:10'
         }},
-      { id:'T5', label:'🏁 TEST 10 KM', dates:'6–12.07', typ:'test',
+      { id:'T5', label:'🏁 TEST 10 KM', dates:'6–12.07', typ:'jak',
         days: {
           'Pn': null,
           'Wt': '40 min BS\n+ 6x200m przebieżki',
@@ -51,14 +51,14 @@ export const phases = [
           'Czw': '20 min BS + 3x1km ZB (5:00–5:10) + 1km BS\n(aktywacja przed testem)',
           'Pt': null,
           'Sob': '30 min BS + 4x100m przebieżki\n(nogi świeże przed testem)',
-          'Nd': '🏁 TEST 10 KM NA CZAS\nCEL: sub-52\n2km BS + 10km + 1km BS schłodzenie'
+          'Nd': '🏁 TEST 10 KM — WYNIK: 52:28\n(VDOT 48–49)'
         }},
       { id:'T6', label:'Baza po teście — 6x800m ZB', dates:'13–19.07', typ:'jak',
         days: {
           'Pn': null,
           'Wt': '40 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 6x800m ZB (5:05) + 10 min BS\n(przerwa 3min trucht)',
+          'Czw': '15 min BS + 6x800m ZB (4:50–4:55) + 10 min BS\n(przerwa 3min trucht)',
           'Pt': null,
           'Sob': '40 min BS\n+ 6x100m przebieżki',
           'Nd': '14km BS (6:20-6:30)'
@@ -74,7 +74,7 @@ export const phases = [
           'Pn': null,
           'Wt': '40 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 4km ZB (5:20) + 10 min BS\n(ciągły bieg progowy)',
+          'Czw': '15 min BS + 4km ZB (5:10–5:13) + 10 min BS\n(ciągły bieg progowy)',
           'Pt': null,
           'Sob': '40 min BS\n+ 6x100m przebieżki',
           'Nd': '15km BS (6:20-6:30)'
@@ -90,7 +90,7 @@ export const phases = [
           'Pn': null,
           'Wt': '40 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 5x1km ZB (5:05) + 10 min BS\n(przerwa 3min trucht)',
+          'Czw': '15 min BS + 5x1km ZB (4:50–4:55) + 10 min BS\n(przerwa 3min trucht)',
           'Pt': null,
           'Sob': '40 min BS\n+ 6x100m przebieżki',
           'Nd': '16km BS (6:20-6:30)'
@@ -100,7 +100,7 @@ export const phases = [
           'Pn': null,
           'Wt': '40 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 5km ZB (5:20) + 10 min BS\n(ciągły bieg progowy)',
+          'Czw': '15 min BS + 5km ZB (5:10–5:13) + 10 min BS\n(ciągły bieg progowy)',
           'Pt': null,
           'Sob': '40 min BS\n+ 6x100m przebieżki',
           'Nd': '17km BS (6:20-6:30)'
@@ -110,7 +110,7 @@ export const phases = [
           'Pn': null,
           'Wt': '45 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 6x1km ZB (5:05) + 10 min BS\n(przerwa 3min trucht)',
+          'Czw': '15 min BS + 6x1km ZB (4:50–4:55) + 10 min BS\n(przerwa 3min trucht)',
           'Pt': null,
           'Sob': '45 min BS\n+ 6x100m przebieżki',
           'Nd': '18km BS (6:20-6:30)'
@@ -120,7 +120,7 @@ export const phases = [
           'Pn': null,
           'Wt': '45 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 6km ZB (5:20) + 10 min BS\n(ciągły bieg progowy)',
+          'Czw': '15 min BS + 6km ZB (5:10–5:13) + 10 min BS\n(ciągły bieg progowy)',
           'Pt': null,
           'Sob': '45 min BS\n+ 6x100m przebieżki',
           'Nd': '16km BS (6:20-6:30)\n(tydzień lżejszy)'
@@ -130,7 +130,7 @@ export const phases = [
           'Pn': null,
           'Wt': '45 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 4x1,5km ZB (5:05) + 10 min BS\n(przerwa 3min trucht)',
+          'Czw': '15 min BS + 4x1,5km ZB (4:50–4:55) + 10 min BS\n(przerwa 3min trucht)',
           'Pt': null,
           'Sob': '45 min BS\n+ 6x100m przebieżki',
           'Nd': '18km BNP:\n12km BS + 6km narastająco 5:30→5:10'
@@ -146,7 +146,7 @@ export const phases = [
           'Pn': null,
           'Wt': '45 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 7km ZB (5:20) + 10 min BS\n(ciągły bieg progowy)',
+          'Czw': '15 min BS + 7km ZB (5:10–5:13) + 10 min BS\n(ciągły bieg progowy)',
           'Pt': null,
           'Sob': '45 min BS\n+ 6x100m przebieżki',
           'Nd': '20km BS (6:20-6:30)\n(najdłuższy bieg planu!)'
@@ -156,7 +156,7 @@ export const phases = [
           'Pn': null,
           'Wt': '40 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 3x2km ZB (5:10) + 10 min BS\n(przerwa 3min trucht)',
+          'Czw': '15 min BS + 3x2km ZB (4:55–5:00) + 10 min BS\n(przerwa 3min trucht)',
           'Pt': null,
           'Sob': '40 min BS\n+ 6x100m przebieżki',
           'Nd': '15km BS (6:20-6:30)\n(tydzień lżejszy)'
@@ -172,7 +172,7 @@ export const phases = [
           'Pn': null,
           'Wt': '45 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 8km ZB (5:20) + 10 min BS\n(ciągły bieg progowy)',
+          'Czw': '15 min BS + 8km ZB (5:10–5:13) + 10 min BS\n(ciągły bieg progowy)',
           'Pt': null,
           'Sob': '40 min BS\n+ 6x100m przebieżki',
           'Nd': '18km:\n13km BS + ostatnie 5km@5:15'
@@ -182,7 +182,7 @@ export const phases = [
           'Pn': null,
           'Wt': '35 min BS\n+ 6x200m przebieżki',
           'Śr': null,
-          'Czw': '15 min BS + 3km ZB (5:15) + 10 min BS\n(krótko i w kontroli)',
+          'Czw': '15 min BS + 3km ZB (5:10–5:13) + 10 min BS\n(krótko i w kontroli)',
           'Pt': null,
           'Sob': '25 min BS\n+ 4x100m przebieżki',
           'Nd': '10km BS (luz)\n\n🏁 START GDAŃSK 27.09!\nCEL: sub 1:50'
