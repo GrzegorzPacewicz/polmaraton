@@ -155,12 +155,19 @@ h1 em {
 .card-bs .legend-abbr,
 .card-bs .legend-name { color: #7AABDC; }
 
-.card-zb {
+.card-tp {
+  background: var(--red-dim);
+  border-color: var(--red);
+}
+.card-tp .legend-abbr,
+.card-tp .legend-name { color: var(--red); }
+
+.card-i {
   background: var(--orange-dim);
   border-color: var(--orange);
 }
-.card-zb .legend-abbr,
-.card-zb .legend-name { color: var(--orange); }
+.card-i .legend-abbr,
+.card-i .legend-name { color: var(--orange); }
 
 .card-bnp {
   background: var(--yellow-dim);
@@ -220,9 +227,19 @@ h1 em {
   color: #7AABDC;
 }
 
-.pace-zb {
+.pace-tp {
+  background: var(--red-dim);
+  color: var(--red);
+}
+
+.pace-i {
   background: var(--orange-dim);
   color: var(--orange);
+}
+
+.pace-m {
+  background: var(--cyan-dim);
+  color: var(--cyan);
 }
 
 .pace-bnp {
