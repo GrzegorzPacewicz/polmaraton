@@ -35,7 +35,9 @@ export function renderDayCell(dayKey, content, weekTyp) {
 export function renderWeek(week, phaseId, globalIdx, currentIdx, done, totalWeeks) {
   const isCurrent = globalIdx === currentIdx;
   const isDone    = done.includes(week.id);
-  const weekNum   = totalWeeks - globalIdx;
+  const weekNum   = phaseId === 'p6'
+    ? globalIdx - totalWeeks + 1
+    : totalWeeks - globalIdx;
 
   const card = document.createElement('div');
   card.className = `week-card ${phaseId}${isCurrent ? ' current' : ''}${isDone ? ' done' : ''}`;
@@ -99,16 +101,17 @@ export function renderPhase(phase, startIdx, currentIdx, done, totalWeeks) {
 
 export function renderAll() {
   const plan       = document.getElementById('plan');
-  const allWeeks   = phases.flatMap(p => p.weeks);
-  const totalWeeks = allWeeks.length;
-  const currentIdx = getCurrentWeekIdx();
-  const done       = getDone();
+  const allWeeks      = phases.flatMap(p => p.weeks);
+  const totalWeeks    = allWeeks.length;
+  const racePlanWeeks = phases.filter(p => p.id !== 'p6').flatMap(p => p.weeks).length;
+  const currentIdx    = getCurrentWeekIdx();
+  const done          = getDone();
 
   plan.innerHTML = '';
 
   let globalIdx = 0;
   phases.forEach(phase => {
-    plan.appendChild(renderPhase(phase, globalIdx, currentIdx, done, totalWeeks));
+    plan.appendChild(renderPhase(phase, globalIdx, currentIdx, done, racePlanWeeks));
     globalIdx += phase.weeks.length;
   });
 
