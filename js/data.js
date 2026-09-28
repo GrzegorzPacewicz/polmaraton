@@ -279,4 +279,42 @@ export const phases = [
       },
     ],
   },
+  {
+    id: "p6",
+    icon: "🌱",
+    title: "Faza 6 — Regeneracja",
+    dates: "28.09 – 11.10.2026",
+    weeks: [
+      {
+        id: "T17",
+        label: "Regeneracja po półmaratonie",
+        dates: "28.09–4.10",
+        typ: "regen",
+        days: {
+          Pn: null,
+          Wt: "30 min BS bardzo luźno (6:15–6:30)\nalbo spacer, jeśli nogi ciężkie",
+          Śr: null,
+          Czw: "35 min BS (6:00–6:30)",
+          Pt: null,
+          Sob: "20 min BS\n+ 4×100m przebieżki",
+          Nd: "5 km luz (ok. 5:36, bez przyspieszania)",
+        },
+      },
+      {
+        id: "T18",
+        label: "Spokojny powrót, sam BS",
+        dates: "5–11.10",
+        typ: "regen",
+        days: {
+          Pn: null,
+          Wt: "40 min BS (6:00–6:30)",
+          Śr: null,
+          Czw: "40 min BS\n+ 4–6×100m przebieżki",
+          Pt: null,
+          Sob: "40 min BS",
+          Nd: "60–70 min BS\n(ok. 10–11 km, 6:00–6:30)",
+        },
+      },
+    ],
+  },
 ];

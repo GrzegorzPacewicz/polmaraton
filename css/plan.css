@@ -38,6 +38,7 @@
 .p3.phase-header .phase-title { color: var(--green); }
 .p4.phase-header .phase-title { color: var(--red); }
 .p5.phase-header .phase-title { color: var(--cyan); }
+.p6.phase-header .phase-title { color: var(--yellow); }
 
 /* ── WEEK CARD ── */
 .week-card {
@@ -58,6 +59,7 @@
 .week-card.p3 { border-left: 3px solid var(--green); }
 .week-card.p4 { border-left: 3px solid var(--red); }
 .week-card.p5 { border-left: 3px solid var(--cyan); }
+.week-card.p6 { border-left: 3px solid var(--yellow); }
 
 .week-header {
   display: flex;
@@ -80,6 +82,7 @@
 
 .week-card.current .week-num { color: var(--cyan); }
 .week-card.p5 .week-num { color: var(--cyan); }
+.week-card.p6 .week-num { color: var(--yellow); }
 
 .week-num-sub {
   font-size: 8px;
