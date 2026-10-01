@@ -1,7 +1,7 @@
 {
-  "name": "Plan Półmaraton Gdańsk 2026",
-  "short_name": "PM Gdańsk",
-  "description": "Plan treningowy na półmaraton Gdański 2026, cel sub 1:50",
+  "name": "Plany treningowe — półmaraton",
+  "short_name": "Półmaraton",
+  "description": "Plany treningowe na półmaraton",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#08101E",

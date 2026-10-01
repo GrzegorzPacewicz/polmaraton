@@ -173,6 +173,21 @@
   border-top: 2px solid var(--orange);
 }
 
+.day-cell.q-j1 { background: rgba(0,212,255,.06); }
+.day-cell.q-j2 { background: rgba(255,77,109,.06); }
+.day-cell.q-j3 { background: rgba(255,107,53,.06); }
+
+.q-tag {
+  margin-left: 4px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 9px;
+  letter-spacing: 1px;
+}
+.q-j1 .q-tag { background: var(--cyan-dim);   color: var(--cyan); }
+.q-j2 .q-tag { background: var(--red-dim);    color: var(--red); }
+.q-j3 .q-tag { background: var(--orange-dim); color: var(--orange); }
+
 .day-cell.race {
   border-top: 2px solid var(--yellow);
   background: rgba(255,209,102,.04);

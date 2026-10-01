@@ -1,3 +1,43 @@
+export const meta = {
+  id: "gdansk-2026",
+  name: "Półmaraton Gdańsk 2026",
+  title: "Półmaraton<br><em>Gdańsk</em> 2026",
+  eyebrow: "Plan treningowy · Daniels + ZB",
+  planStart: "2026-06-08",
+  raceDate: "2026-09-27",
+  storageKey: "gdansk_done",
+  stats: [
+    { label: "Start", value: "27.09.2026" },
+    { label: "Cel", value: "sub 1:50", accent: true },
+    { label: "Wynik · cel spełniony", value: "1:50:21 ✓", accent: true },
+    { label: "Tygodnie", value: "16" },
+    { label: "Baza", value: "30–40 km" },
+  ],
+  legend: [
+    {
+      title: "Skróty",
+      cards: [
+        { cls: "card-bs", abbr: "BS", name: "bieg spokojny (Easy)", desc: "Tempo 5:56–6:26/km. Oddech swobodny, rozmowa możliwa. Rozgrzewki, schłodzenia i długie biegi niedzielne." },
+        { cls: "card-tp", abbr: "TP", name: "tempo progowe (Threshold)", desc: "Tempo 5:06–5:12/km. Ciągły bieg 20–40 min na granicy komfortu — możesz powiedzieć kilka słów, ale nie prowadzić rozmowy. Buduje wytrzymałość mleczanową." },
+        { cls: "card-i", abbr: "I", name: "interwały (Interval)", desc: "Tempo 4:40–4:50/km. Odcinki 400m–1,5km z przerwą trucht/marsz. Buduje VO2max i tolerancję na kwas mlekowy." },
+        { cls: "card-bnp", abbr: "BNP", name: "bieg z narastającą prędkością", desc: "Start spokojnie (~6:10/km), co kilka km przyspieszasz, finisz ~5:10/km. Uczy kontroli tempa i przygotowuje nogi do wyścigu." },
+        { cls: "card-p", abbr: "P", name: "przebieżki (Strides)", desc: "Luźne przyśpieszenia 80–100m, 20 sekund każde. Nie sprint — \"swobodnie szybko\". Przerwa 60s marszu/truchtu. Technika i aktywacja mięśni szybkokurczliwych." },
+      ],
+    },
+  ],
+  paces: {
+    label: "Tempa VDOT 48–49",
+    note: "(test 10km 12.07: 52:28)",
+    chips: [
+      { cls: "pace-bs", text: "BS 5:56–6:26" },
+      { cls: "pace-tp", text: "TP 5:06–5:12" },
+      { cls: "pace-i", text: "I 4:40–4:50" },
+      { cls: "pace-m", text: "M 5:18–5:25" },
+      { cls: "pace-bnp", text: "BNP 5:10–6:10" },
+    ],
+  },
+};
+
 export const phases = [
   {
     id: "p1",
@@ -281,6 +321,7 @@ export const phases = [
   },
   {
     id: "p6",
+    recovery: true,
     icon: "🌱",
     title: "Faza 6 — Regeneracja",
     dates: "28.09 – 11.10.2026",

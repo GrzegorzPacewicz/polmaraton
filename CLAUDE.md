@@ -1,6 +1,8 @@
-# Projekt — Plan treningowy Półmaraton Gdański 2026
+# Projekt — Plany treningowe (biegi)
 
-Strona z planem treningowym na półmaraton (Gdańsk, 27.09.2026), cel: sub 1:50.
+Strona z planami treningowymi. Obsługuje wiele planów; wybór przez `?plan=<id>`,
+bez parametru — `DEFAULT_PLAN` z `js/plans/index.js`.
+Archiwum: Półmaraton Gdański 2026 (`gdansk-2026`, tag git `gdansk-2026`).
 Vanilla JS (ES modules), bez frameworków.
 
 ## Struktura plików
@@ -12,33 +14,47 @@ css/
   header.css            — header, countdown, legend, progress bar
   plan.css              — phase-header, week-card, day-cell, badges, responsive
 js/
-  data.js               — export const phases (wszystkie dane, zero logiki)
-  state.js              — getCurrentWeekIdx, getDaysTo, getDone, saveDone
-  render.js             — renderDayCell, renderWeek, renderPhase, renderAll
-  countdown.js          — updateCountdown + setInterval(60000)
-  main.js               — init, event delegation na #plan
+  plans/
+    index.js            — rejestr planów (id, name, load) + DEFAULT_PLAN
+    warszawa-2027.js    — aktualny plan: Półmaraton Warszawski (Daniels VDOT 40, start 4.04.2027), wygenerowany z plan-polmaraton.md
+    gdansk-2026.js      — archiwum (wynik 1:50:21, cel spełniony)
+  state.js              — loadPlan, getPlan, getOtherPlans, getCurrentWeekIdx, getDaysTo, getDone, saveDone
+  render.js             — renderHeader, renderDayCell, renderWeek, renderPhase, renderAll
+  countdown.js          — updateCountdown
+  main.js               — init (loadPlan → render), setInterval, event delegation na #plan
 plan_gdanski_2026.html  — oryginał (backup, nie ruszać)
 ```
 
 ## Struktura danych
 
-Plan: 5 faz, 16 tygodni (T1–T16). Dane w `js/data.js` jako `export const phases`.
+Każdy plan to plik `js/plans/<id>.js` z `meta` i `phases`. Nowy plan = nowy plik + wpis w `plans/index.js`.
 
 ```js
+// meta
+{ id, name, title /* HTML h1 */, eyebrow, planStart:'RRRR-MM-DD', raceDate:'RRRR-MM-DD',
+  storageKey? /* domyślnie `done_<id>` */, stats:[{label,value,accent?}],
+  legend:[{title, html?, cards?:[{cls,abbr,name,desc}], after?}],  // sekcje legendy
+  paces:{label,note,chips:[{cls,text}]},
+  quality?: {Wt:'J2', Czw:'J3', Nd:'J1'} }  // sesje jakościowe → .key (pomarańczowa góra) + tło .q-j1/.q-j2/.q-j3
+// faza (quality nadpisuje meta.quality, {} = brak sesji J)
+{ id:'p1'..'p6', icon, title, dates, recovery?: true /* numeracja po starcie */, quality?, weeks:[...] }
 // tydzień
-{ id:'T1', label:'...', dates:'...', typ:'regen|jak|bud|szczyt|test|start',
+{ id:'T1', label:'...', dates:'...', typ:'regen|jak|bud|szczyt|test|start', quality? /* nadpisuje fazę */,
   days: { 'Pn'|'Wt'|'Śr'|'Czw'|'Pt'|'Sob'|'Nd': string | null } }
 // null = dzień odpoczynku
 ```
 
-Fazy: p1 (T1–T6), p2 (T7), p3 (T8–T12), p4 (T13–T14), p5 (T15–T16).
+Bez `quality` (Gdańsk) działa stara logika `.key` (Czw + Nd w test/start).
+
+Półmaraton Warszawski 2027: p1 baza (B1–B8), p2 Faza II (T1–T6), p3 Faza III (T7–T12), p4 Faza IV (T13–T18).
+Gdańsk 2026: p1 (T1–T6), p2 (T7), p3 (T8–T12), p4 (T13–T14), p5 (T15–T16), p6 regeneracja (T17–T18).
 
 ## Stan aplikacji
 
-- `done: string[]` — localStorage key: `'gdansk_done'`
+- `done: string[]` — localStorage key: `meta.storageKey` lub `done_<id>` (Gdańsk: `'gdansk_done'`)
 - `open` — zarządzane przez klasę CSS `.open` na `.week-card`
-- `currentWeekIdx` — obliczany z `PLAN_START = new Date('2026-06-16')`
-- `RACE_DATE = new Date('2026-09-27')`
+- `currentWeekIdx` — obliczany z `meta.planStart`
+- odliczanie — z `meta.raceDate`
 
 ## Paleta kolorów (CSS variables)
 
@@ -78,7 +94,7 @@ Fonty: **Barlow Condensed** (display, 700/900) + **Inter** (body, 400/600) — G
 ## Zasady (nie zmieniać)
 
 1. ES modules — `import/export` wszędzie, `type="module"` w index.html.
-2. `data.js` — tylko dane, zero logiki.
+2. `plans/<id>.js` — tylko dane, zero logiki.
 3. `state.js` — cała logika; render.js nie zawiera logiki biznesowej.
 4. Event handling: jeden listener na `#plan`, delegacja przez `data-action`.
 5. CSS przepisany 1:1 z oryginału, bez frameworków.

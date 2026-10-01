@@ -1,5 +1,4 @@
-import { phases } from './data.js';
-import { getDone, getCurrentWeekIdx } from './state.js';
+import { getPlan, getOtherPlans, getDone, getCurrentWeekIdx, getQuality } from './state.js';
 
 const DAY_ORDER = ['Pn','Wt','Śr','Czw','Pt','Sob','Nd'];
 const DAY_NAMES = {
@@ -15,7 +14,7 @@ const BADGE_MAP = {
   start: ['badge-start','🏁 Start'],
 };
 
-export function renderDayCell(dayKey, content, weekTyp) {
+export function renderDayCell(dayKey, content, weekTyp, quality) {
   const cell = document.createElement('div');
   cell.setAttribute('role', 'article');
 
@@ -25,17 +24,22 @@ export function renderDayCell(dayKey, content, weekTyp) {
     return cell;
   }
 
-  const isKey  = dayKey === 'Czw' || (dayKey === 'Nd' && (weekTyp === 'test' || weekTyp === 'start'));
+  const q      = quality && quality[dayKey];
+  const isKey  = quality
+    ? Boolean(q)
+    : dayKey === 'Czw' || (dayKey === 'Nd' && (weekTyp === 'test' || weekTyp === 'start'));
   const isRace = weekTyp === 'start' && dayKey === 'Nd';
-  cell.className = `day-cell${isKey ? ' key' : ''}${isRace ? ' race' : ''}`;
-  cell.innerHTML = `<div class="day-name">${DAY_NAMES[dayKey]}</div><div class="day-content">${content}</div>`;
+  cell.className = `day-cell${isKey ? ' key' : ''}${q ? ` q-${q.toLowerCase()}` : ''}${isRace ? ' race' : ''}`;
+  const qTag = q ? ` <span class="q-tag">${q}</span>` : '';
+  cell.innerHTML = `<div class="day-name">${DAY_NAMES[dayKey]}${qTag}</div><div class="day-content">${content}</div>`;
   return cell;
 }
 
-export function renderWeek(week, phaseId, globalIdx, currentIdx, done, totalWeeks) {
+export function renderWeek(week, phase, globalIdx, currentIdx, done, totalWeeks) {
+  const phaseId   = phase.id;
   const isCurrent = globalIdx === currentIdx;
   const isDone    = done.includes(week.id);
-  const weekNum   = phaseId === 'p6'
+  const weekNum   = phase.recovery
     ? globalIdx - totalWeeks + 1
     : totalWeeks - globalIdx;
 
@@ -66,7 +70,8 @@ export function renderWeek(week, phaseId, globalIdx, currentIdx, done, totalWeek
 
   const grid = document.createElement('div');
   grid.className = 'days-grid';
-  DAY_ORDER.forEach(d => grid.appendChild(renderDayCell(d, week.days[d], week.typ)));
+  const quality = getQuality(phase, week);
+  DAY_ORDER.forEach(d => grid.appendChild(renderDayCell(d, week.days[d], week.typ, quality)));
 
   const doneBtn = document.createElement('button');
   doneBtn.className = 'done-btn';
@@ -93,17 +98,55 @@ export function renderPhase(phase, startIdx, currentIdx, done, totalWeeks) {
   fragment.appendChild(phDiv);
 
   phase.weeks.forEach((week, i) => {
-    fragment.appendChild(renderWeek(week, phase.id, startIdx + i, currentIdx, done, totalWeeks));
+    fragment.appendChild(renderWeek(week, phase, startIdx + i, currentIdx, done, totalWeeks));
   });
 
   return fragment;
 }
 
+export function renderHeader() {
+  const { meta } = getPlan();
+  document.title = `${meta.name} — Plan Treningowy`;
+
+  document.getElementById('eyebrow').textContent = meta.eyebrow;
+  document.getElementById('plan-title').innerHTML = meta.title;
+  document.getElementById('header-meta').innerHTML = meta.stats.map(s => `
+    <div class="meta-item">
+      <span class="meta-label">${s.label}</span>
+      <span class="meta-value${s.accent ? ' accent' : ''}">${s.value}</span>
+    </div>`).join('');
+
+  const others = getOtherPlans();
+  const nav = document.getElementById('plan-nav');
+  nav.hidden = others.length === 0;
+  nav.innerHTML = `<span class="plan-nav-label">Inne plany</span>` +
+    others.map(p => `<a class="plan-nav-link" href="?plan=${p.id}">${p.name}</a>`).join('');
+
+  const sections = meta.legend.map(sec => `
+    <div class="legend-title">${sec.title}</div>
+    ${sec.html ? `<div class="legend-text">${sec.html}</div>` : ''}
+    ${sec.cards ? `<div class="legend-cards">${sec.cards.map(c => `
+      <div class="legend-card ${c.cls}">
+        <div class="legend-abbr">${c.abbr}</div>
+        <div class="legend-name">${c.name}</div>
+        <div class="legend-desc">${c.desc}</div>
+      </div>`).join('')}</div>` : ''}
+    ${sec.after ? `<div class="legend-text legend-after">${sec.after}</div>` : ''}`).join('');
+
+  document.getElementById('legend').innerHTML = sections + `
+    <div class="legend-paces">
+      <span class="legend-paces-label">${meta.paces.label}</span>
+      <span class="legend-paces-note">${meta.paces.note}</span>
+      ${meta.paces.chips.map(c => `<span class="pace-chip ${c.cls}">${c.text}</span>`).join('')}
+    </div>`;
+}
+
 export function renderAll() {
+  const { phases } = getPlan();
   const plan       = document.getElementById('plan');
   const allWeeks      = phases.flatMap(p => p.weeks);
   const totalWeeks    = allWeeks.length;
-  const racePlanWeeks = phases.filter(p => p.id !== 'p6').flatMap(p => p.weeks).length;
+  const racePlanWeeks = phases.filter(p => !p.recovery).flatMap(p => p.weeks).length;
   const currentIdx    = getCurrentWeekIdx();
   const done          = getDone();
 

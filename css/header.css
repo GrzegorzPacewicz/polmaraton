@@ -96,6 +96,35 @@ h1 em {
   margin: 0 4px;
 }
 
+/* ── PLAN NAV ── */
+.plan-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin-top: 16px;
+  font-size: 12px;
+}
+
+.plan-nav[hidden] { display: none; }
+
+.plan-nav-label {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 10px;
+}
+
+.plan-nav-link {
+  color: var(--text);
+  text-decoration: none;
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+.plan-nav-link:hover { border-color: var(--cyan); color: var(--cyan); }
+
 /* ── LEGEND ── */
 .legend {
   max-width: 960px;
@@ -176,12 +205,48 @@ h1 em {
 .card-bnp .legend-abbr,
 .card-bnp .legend-name { color: var(--yellow); }
 
+.card-m {
+  background: var(--cyan-dim);
+  border-color: var(--cyan);
+}
+.card-m .legend-abbr,
+.card-m .legend-name { color: var(--cyan); }
+
+.card-r {
+  background: var(--yellow-dim);
+  border-color: var(--yellow);
+}
+.card-r .legend-abbr,
+.card-r .legend-name { color: var(--yellow); }
+
 .card-p {
   background: var(--green-dim);
   border-color: var(--green);
 }
 .card-p .legend-abbr,
 .card-p .legend-name { color: var(--green); }
+
+.legend-cards + .legend-title,
+.legend-text + .legend-title,
+.legend-after + .legend-title { margin-top: 24px; }
+
+.legend-text {
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text);
+  opacity: 0.85;
+  margin-bottom: 14px;
+}
+
+.legend-text p + p,
+.legend-text ul + p,
+.legend-text p + ul { margin-top: 8px; }
+
+.legend-text ul { padding-left: 18px; }
+.legend-text li + li { margin-top: 4px; }
+.legend-text strong { color: var(--cyan); font-weight: 600; }
+
+.legend-after { margin-top: 14px; margin-bottom: 0; }
 
 /* ── PACES SUMMARY ── */
 .legend-paces {
@@ -243,6 +308,11 @@ h1 em {
 }
 
 .pace-bnp {
+  background: var(--yellow-dim);
+  color: var(--yellow);
+}
+
+.pace-r {
   background: var(--yellow-dim);
   color: var(--yellow);
 }

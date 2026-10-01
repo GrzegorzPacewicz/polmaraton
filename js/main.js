@@ -1,8 +1,11 @@
-import { getDone, saveDone } from './state.js';
-import { renderAll } from './render.js';
+import { loadPlan, getDone, saveDone } from './state.js';
+import { renderHeader, renderAll } from './render.js';
 import { updateCountdown } from './countdown.js';
 
+await loadPlan();
+renderHeader();
 updateCountdown();
+setInterval(updateCountdown, 60000);
 renderAll();
 
 const current = document.querySelector('.week-card.current');
