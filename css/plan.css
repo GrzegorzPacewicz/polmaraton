@@ -184,9 +184,9 @@
   font-size: 9px;
   letter-spacing: 1px;
 }
-.q-j1 .q-tag { background: var(--cyan-dim);   color: var(--cyan); }
-.q-j2 .q-tag { background: var(--red-dim);    color: var(--red); }
-.q-j3 .q-tag { background: var(--orange-dim); color: var(--orange); }
+.q-j1 .q-tag, .q-tag-j1 { background: var(--cyan-dim);   color: var(--cyan); }
+.q-j2 .q-tag, .q-tag-j2 { background: var(--red-dim);    color: var(--red); }
+.q-j3 .q-tag, .q-tag-j3 { background: var(--orange-dim); color: var(--orange); }
 
 .day-cell.race {
   border-top: 2px solid var(--yellow);

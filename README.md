@@ -15,6 +15,17 @@ https://polmaraton.grzegorzpacewicz.pl
 - CSS (custom properties, zero frameworków)
 - PWA (manifest, ikona)
 
+## Zmiany w planie warszawskim
+
+Źródłem jest `plan-polmaraton.md`. Po edycji uruchom:
+
+```bash
+python3 tools/gen-plan.py
+```
+
+Skrypt nadpisuje `js/plans/warszawa-2027.js` — nie edytuj go ręcznie.
+Krótkie etykiety tygodni, typy tygodni i dane nagłówka są w bloku `USTAWIENIA` w skrypcie.
+
 ## Nowy plan
 
 1. Dodaj `js/plans/<id>.js` z `meta` i `phases`.

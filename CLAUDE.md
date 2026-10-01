@@ -16,13 +16,16 @@ css/
 js/
   plans/
     index.js            — rejestr planów (id, name, load) + DEFAULT_PLAN
-    warszawa-2027.js    — aktualny plan: Półmaraton Warszawski (Daniels VDOT 40, start 4.04.2027), wygenerowany z plan-polmaraton.md
+    warszawa-2027.js    — aktualny plan: Półmaraton Warszawski (Daniels VDOT 40, start 4.04.2027)
+                          GENEROWANY: `python3 tools/gen-plan.py` z plan-polmaraton.md — nie edytować ręcznie
     gdansk-2026.js      — archiwum (wynik 1:50:21, cel spełniony)
   state.js              — loadPlan, getPlan, getOtherPlans, getCurrentWeekIdx, getDaysTo, getDone, saveDone
   render.js             — renderHeader, renderDayCell, renderWeek, renderPhase, renderAll
   countdown.js          — updateCountdown
   main.js               — init (loadPlan → render), setInterval, event delegation na #plan
 plan_gdanski_2026.html  — oryginał (backup, nie ruszać)
+plan-polmaraton.md      — źródło planu warszawskiego
+tools/gen-plan.py       — generator warszawa-2027.js (etykiety tygodni, typy, meta w bloku USTAWIENIA)
 ```
 
 ## Struktura danych
@@ -33,7 +36,8 @@ Każdy plan to plik `js/plans/<id>.js` z `meta` i `phases`. Nowy plan = nowy pli
 // meta
 { id, name, title /* HTML h1 */, eyebrow, planStart:'RRRR-MM-DD', raceDate:'RRRR-MM-DD',
   storageKey? /* domyślnie `done_<id>` */, stats:[{label,value,accent?}],
-  legend:[{title, html?, cards?:[{cls,abbr,name,desc}], after?}],  // sekcje legendy
+  legend:[{title, html?, facts?:[{label,text}], rules?:[{num,label,text}],
+           callout?:{title,text}, cards?:[{cls,abbr,name,desc}], after?}],  // sekcje legendy (w tej kolejności)
   paces:{label,note,chips:[{cls,text}]},
   quality?: {Wt:'J2', Czw:'J3', Nd:'J1'} }  // sesje jakościowe → .key (pomarańczowa góra) + tło .q-j1/.q-j2/.q-j3
 // faza (quality nadpisuje meta.quality, {} = brak sesji J)

@@ -228,7 +228,9 @@ h1 em {
 
 .legend-cards + .legend-title,
 .legend-text + .legend-title,
-.legend-after + .legend-title { margin-top: 24px; }
+.legend-after + .legend-title,
+.legend-callout + .legend-title,
+.legend-rules + .legend-title { margin-top: 28px; }
 
 .legend-text {
   font-size: 13px;
@@ -247,6 +249,90 @@ h1 em {
 .legend-text strong { color: var(--cyan); font-weight: 600; }
 
 .legend-after { margin-top: 14px; margin-bottom: 0; }
+
+/* ── ZAŁOŻENIA: kafelki + ramka ── */
+.legend-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.legend-fact {
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.legend-fact-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+}
+
+.legend-fact-text {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text);
+  opacity: 0.85;
+}
+
+.legend-fact-text::first-letter,
+.legend-callout-text::first-letter { text-transform: uppercase; }
+
+.legend-fact-text .q-tag { margin: 0 1px; font-size: 10px; font-weight: 600; }
+
+.legend-rules {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  gap: 12px;
+}
+
+.legend-rule {
+  display: flex;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+}
+
+.legend-rule-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--subtle);
+  min-width: 18px;
+}
+
+.legend-callout {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: var(--yellow-dim);
+  border-left: 3px solid var(--yellow);
+  border-radius: 10px;
+}
+
+.legend-callout-title {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--yellow);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.legend-callout-text {
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--text);
+  opacity: 0.85;
+}
 
 /* ── PACES SUMMARY ── */
 .legend-paces {

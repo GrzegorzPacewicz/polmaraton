@@ -32,7 +32,73 @@ export const meta = {
   legend: [
     {
       title: "Założenia",
-      html: "<p>Plan prowadzi do półmaratonu w niedzielę 4 kwietnia 2027 r.: 8 tygodni bazy (od 5 października), potem 18 tygodni planu Danielsa (od 30 listopada).</p><ul><li><strong>Punkt wyjścia:</strong> VDOT 40 (półmaraton 1:50:00), obecnie 35–40 km tygodniowo.</li><li><strong>4 dni biegowe:</strong> wtorek, czwartek, sobota, niedziela. Poniedziałek, środa i piątek to dni wolne lub ćwiczenia ogólnorozwojowe.</li><li><strong>Sesje J (jakościowe):</strong> niedziela = J1 (bieg długi lub M), wtorek = J2 (próg P), czwartek = J3 (rytmy R lub interwały I). Sobota to spokojny bieg z przebieżkami.</li><li><strong>Kilometraż:</strong> od ok. 38 km do szczytu ok. 50 km w tygodniach 9–12, z lżejszym tygodniem co 3–4 tygodnie.</li><li><strong>Cel:</strong> zejście poniżej 1:47 (VDOT ok. 42). Tempo startowe ustalisz po starcie kontrolnym na 10 km w tygodniu 10.</li></ul><p>Jedno odstępstwo od Danielsa: przy 4 dniach biegania limit 25% tygodniowego kilometrażu dałby bieg długi 10–12 km, za krótki na półmaraton. Dlatego bieg długi ma do ok. 35% tygodnia, ale zawsze najwyżej 120 minut.</p>",
+      html: "<p>Plan prowadzi do półmaratonu w niedzielę 4 kwietnia 2027 r.: 8 tygodni bazy (od 5 października), potem 18 tygodni planu Danielsa (od 30 listopada).</p>",
+      facts: [
+        {
+          label: "Punkt wyjścia",
+          text: "VDOT 40 (półmaraton 1:50:00), obecnie 35–40 km tygodniowo.",
+        },
+        {
+          label: "4 dni biegowe",
+          text: "wtorek, czwartek, sobota, niedziela. Poniedziałek, środa i piątek to dni wolne lub ćwiczenia ogólnorozwojowe.",
+        },
+        {
+          label: "Sesje J (jakościowe)",
+          text: "niedziela = <span class=\"q-tag q-tag-j1\">J1</span> (bieg długi lub M), wtorek = <span class=\"q-tag q-tag-j2\">J2</span> (próg P), czwartek = <span class=\"q-tag q-tag-j3\">J3</span> (rytmy R lub interwały I). Sobota to spokojny bieg z przebieżkami.",
+        },
+        {
+          label: "Kilometraż",
+          text: "od ok. 38 km do szczytu ok. 50 km w tygodniach 9–12, z lżejszym tygodniem co 3–4 tygodnie.",
+        },
+        {
+          label: "Cel",
+          text: "zejście poniżej 1:47 (VDOT ok. 42). Tempo startowe ustalisz po starcie kontrolnym na 10 km w tygodniu 10.",
+        },
+      ],
+      callout: {
+        title: "Jedno odstępstwo od Danielsa",
+        text: "przy 4 dniach biegania limit 25% tygodniowego kilometrażu dałby bieg długi 10–12 km, za krótki na półmaraton. Dlatego bieg długi ma do ok. 35% tygodnia, ale zawsze najwyżej 120 minut.",
+      },
+    },
+    {
+      title: "Zasady i korekty",
+      rules: [
+        {
+          num: "1",
+          label: "Brakuje czasu",
+          text: "najpierw rezygnujesz z sobotniego BS, potem z <span class=\"q-tag q-tag-j3\">J3</span>. <span class=\"q-tag q-tag-j1\">J1</span> i <span class=\"q-tag q-tag-j2\">J2</span> robisz zawsze.",
+        },
+        {
+          num: "2",
+          label: "Nie przyspieszasz",
+          text: "I i R biegasz dokładnie w tempie z tabeli, także w dobry dzień. Trudność zmieniasz długością przerwy.",
+        },
+        {
+          num: "3",
+          label: "Choroba lub przerwa",
+          text: "do 5 dni wracasz do planu. Po 6–28 dniach powtarzasz ostatni ukończony tydzień i biegasz na tempach o 1–2 punkty VDOT niższych.",
+        },
+        {
+          num: "4",
+          label: "Przemęczenie",
+          text: "(ciężkie nogi kilka dni z rzędu, tętno spoczynkowe wyższe o 5+ uderzeń): najbliższą sesję J zamieniasz na BS.",
+        },
+        {
+          num: "5",
+          label: "Nowy VDOT",
+          text: "tempa podnosisz tylko po wyniku z zawodów lub teście, najwcześniej co 4–6 tygodni.",
+        },
+        {
+          num: "6",
+          label: "Wiatr, upał, górki",
+          text: "trzymasz wysiłek, a nie tempo. Na BS możesz biec wolniej niż 6:45.",
+        },
+        {
+          num: "7",
+          label: "Siła",
+          text: "w dni wolne 2× w tygodniu 20–30 min ćwiczeń ogólnorozwojowych (przysiady, wykroki, plank, łydki).",
+        },
+      ],
     },
     {
       title: "Tempa treningowe (VDOT 40)",

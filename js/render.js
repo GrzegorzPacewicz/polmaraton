@@ -125,6 +125,23 @@ export function renderHeader() {
   const sections = meta.legend.map(sec => `
     <div class="legend-title">${sec.title}</div>
     ${sec.html ? `<div class="legend-text">${sec.html}</div>` : ''}
+    ${sec.facts ? `<div class="legend-facts">${sec.facts.map(f => `
+      <div class="legend-fact">
+        <div class="legend-fact-label">${f.label}</div>
+        <div class="legend-fact-text">${f.text}</div>
+      </div>`).join('')}</div>` : ''}
+    ${sec.rules ? `<div class="legend-rules">${sec.rules.map(r => `
+      <div class="legend-rule">
+        <div class="legend-rule-num">${r.num}</div>
+        <div>
+          <div class="legend-fact-label">${r.label}</div>
+          <div class="legend-fact-text">${r.text}</div>
+        </div>
+      </div>`).join('')}</div>` : ''}
+    ${sec.callout ? `<div class="legend-callout">
+      <div class="legend-callout-title">${sec.callout.title}</div>
+      <div class="legend-callout-text">${sec.callout.text}</div>
+    </div>` : ''}
     ${sec.cards ? `<div class="legend-cards">${sec.cards.map(c => `
       <div class="legend-card ${c.cls}">
         <div class="legend-abbr">${c.abbr}</div>
