@@ -6,7 +6,7 @@ Użycie (z katalogu głównego repo lub skądkolwiek):
 
 Z pliku .md brane są: sekcja „Założenia” (bez tabeli okresów), „Zasady i korekty”,
 sekcja „Tempa treningowe …” (tekst + tabela stref) oraz tabele tygodni z sekcji
-„Okres bazowy”, „Faza II”, „Faza III”, „Faza IV”.
+„Wprowadzenie”, „Faza II”, „Faza III”, „Faza IV”.
 Wszystko, czego nie ma w .md, ustawiasz w bloku USTAWIENIA poniżej.
 
 UWAGA: skrypt nadpisuje plik wynikowy — ręczne zmiany w nim przepadną.
@@ -43,12 +43,17 @@ PACES_NOTE = '(półmaraton 1:50:00)'
 
 # Fazy: (nagłówek sekcji w .md, id fazy, ikona, tytuł, daty, czy tygodnie bazowe)
 PHASES = [
-    ('## Okres bazowy', 'p1', '🧱', 'Baza — biegi spokojne i podbiegi', '5.10 – 29.11.2026', True),
+    ('## Wprowadzenie', 'p1', '🧱', 'Wprowadzenie — regeneracja i lekka jakość', '5.10 – 29.11.2026', True),
     ('## Faza II', 'p2', '⚡', 'Faza II — Rytmy i próg', '30.11.2026 – 10.01.2027', False),
     ('## Faza III', 'p3', '🔥', 'Faza III — Interwały i próg', '11.01 – 21.02.2027', False),
     ('## Faza IV', 'p4', '🏁', 'Faza IV — Specyfika półmaratonu i start', '22.02 – 4.04.2027', False),
 ]
 
+# Krótkie etykiety tygodni bazy B1–B8 (sesja J we wtorek); suma km dokleja się sama
+BASE_LABELS = {
+    'B1': 'Regeneracja', 'B2': 'Regeneracja', 'B3': 'Podbiegi', 'B4': 'P 15 min',
+    'B5': 'R 8×200 m', 'B6': 'P 20 min', 'B7': 'Podbiegi + R', 'B8': 'Lżejszy · test 5 km',
+}
 # Krótkie etykiety tygodni 1–18 (nagłówek karty tygodnia); suma km dokleja się sama
 LABELS = {
     '1': 'P 3×1,6 km · R 8×200 m', '2': 'P 20 min · R 6×400 m', '3': 'P 4×1,2 km · R · 8 km M',
@@ -204,9 +209,16 @@ for head, pid, icon, title, dates, is_base in PHASES:
         n = r[0].split()[0]
         days = dict(Pn=None, Wt=day(r[2]), Śr=None, Czw=day(r[3]), Pt=None, Sob=day(r[4]), Nd=day(r[5]))
         if is_base:
-            light = '(lżejszy)' in r[0]
-            w = dict(id=n, label=('Baza · lżejszy tydzień' if light else 'Baza') + f' · {km(r[6])}',
-                     dates=week_dates(idx), typ='regen' if light else 'bud', days=days)
+            # „**J:**” przed treningiem → etykieta J2 na kafelku (prefiks znika), TEST w niedzielę → J1
+            q = {}
+            if r[2].startswith('**J:** '):
+                q['Wt'] = 'J2'
+                days['Wt'] = day(r[2][len('**J:** '):])
+            if 'TEST' in r[5]:
+                q['Nd'] = 'J1'
+            typ = 'regen' if '(regeneracja)' in r[0] else 'test' if 'test' in r[0] else 'bud'
+            w = dict(id=n, label=f'{BASE_LABELS[n]} · {km(r[6])}',
+                     dates=week_dates(idx), typ=typ, quality=q, days=days)
         else:
             w = dict(id=f'T{n}', label=f'{LABELS[n]} · {km(r[6])}',
                      dates=week_dates(idx), typ=TYP.get(n, 'jak'), days=days)
