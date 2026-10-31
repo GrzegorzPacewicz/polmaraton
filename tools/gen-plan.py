@@ -51,19 +51,19 @@ PHASES = [
 
 # Krótkie etykiety tygodni bazy B1–B8 (sesja J we wtorek); suma km dokleja się sama
 BASE_LABELS = {
-    'B1': 'Regeneracja', 'B2': 'Regeneracja', 'B3': 'Podbiegi', 'B4': 'P 15 min',
-    'B5': 'R 8×200 m', 'B6': 'P 20 min', 'B7': 'Podbiegi + R', 'B8': 'Lżejszy · test 5 km',
+    'B1': 'Regeneracja', 'B2': 'Regeneracja', 'B3': 'Podbiegi', 'B4': 'P 3 km',
+    'B5': 'R 8×200 m', 'B6': 'P 4 km', 'B7': 'Podbiegi + R', 'B8': 'Lżejszy · test 5 km',
 }
 # Krótkie etykiety tygodni 1–18 (nagłówek karty tygodnia); suma km dokleja się sama
 LABELS = {
-    '1': 'P 3×1,6 km · R 8×200 m', '2': 'P 20 min · R 6×400 m', '3': 'P 4×1,2 km · R · 8 km M',
+    '1': 'P 3×1,6 km · R 8×200 m', '2': 'P 4 km · R 6×400 m', '3': 'P 4×1,2 km · R · 8 km M',
     '4': 'Lżejszy tydzień (święta)', '5': 'P 5×1 km · R 10×200 m · BD 17 km',
-    '6': 'P 20 min · R 6×400 m · 10 km M',
+    '6': 'P 4 km · R 6×400 m · 10 km M',
     '7': 'Pierwsze I 3×1,2 km', '8': 'I 4×1 km · 12 km M', '9': 'P + R · I 4×1 km · BD 18 km',
     '10': 'Lżejszy · start kontrolny 10 km', '11': 'P 3,2 + 1,6 km · BD 19 km',
     '12': 'I 4×1 km · 12 km M + P',
-    '13': 'P 2×10 min · P + I', '14': 'I 5×800 m · 2×30 min M', '15': 'P 20 + 5 min · BD 18 km',
-    '16': 'Taper · 60 min M', '17': 'Taper · 90 min BS', '18': 'Tydzień startowy',
+    '13': 'P 2×2 km · P + I', '14': 'I 5×800 m · 2×5,5 km M', '15': 'P 4 + 1 km · BD 18 km',
+    '16': 'Taper · 11 km M', '17': 'Taper · 14 km BS', '18': 'Tydzień startowy',
 }
 # Typ tygodnia (badge); domyślnie 'jak', w bazie 'bud' / 'regen' dla lżejszych
 TYP = {'4': 'regen', '9': 'szczyt', '10': 'test', '11': 'szczyt', '12': 'szczyt', '18': 'start'}
@@ -145,7 +145,9 @@ def assumptions(text):
 
 def day(t):
     t = inline(t)
-    return t.replace(' + 10 min BS (', ' + 10 min BS\n(').replace(' + 10 min truchtu', '\n+ 10 min truchtu')
+    for cd in (' + 2,5 km BS (', ' + 1,5 km BS ('):
+        t = t.replace(cd, cd[:-2] + '\n(')
+    return t.replace(' + 1,5 km truchtu', '\n+ 1,5 km truchtu')
 
 
 def week_dates(i):
