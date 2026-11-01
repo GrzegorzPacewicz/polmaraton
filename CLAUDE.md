@@ -2,7 +2,11 @@
 
 Strona z planami treningowymi. Obsługuje wiele planów; wybór przez `?plan=<id>`,
 bez parametru — `DEFAULT_PLAN` z `js/plans/index.js`.
+Aktualny plan: Maraton Juranda 2027 (`maraton-2027`, start 4.04.2027, cel ok. 3:50).
 Archiwum: Półmaraton Gdański 2026 (`gdansk-2026`, tag git `gdansk-2026`).
+Plan półmaratonu warszawskiego (`warszawa-2027.js`) jest nieaktywny — plik został
+na dysku, ale wypisany z `plans/index.js` po zmianie decyzji na maraton (29.11.2026).
+Kontekst biegowy użytkownika: `CONTEXT.md`.
 Vanilla JS (ES modules), bez frameworków.
 
 ## Struktura plików
@@ -16,16 +20,19 @@ css/
 js/
   plans/
     index.js            — rejestr planów (id, name, load) + DEFAULT_PLAN
-    warszawa-2027.js    — aktualny plan: Półmaraton Warszawski (Daniels VDOT 40, start 4.04.2027)
-                          GENEROWANY: `python3 tools/gen-plan.py` z plan-polmaraton.md — nie edytować ręcznie
+    maraton-2027.js     — AKTUALNY plan: Maraton Juranda (Daniels VDOT 40, start 4.04.2027, cel ok. 3:50)
+                          PISANY RĘCZNIE ze źródła plan-maraton.md — 5-dniowy (generator jest 4-dniowy, nie dotyczy)
+    warszawa-2027.js    — nieaktywny (półmaraton warszawski); wypisany z index.js, plik zostaje
     gdansk-2026.js      — archiwum (wynik 1:50:21, cel spełniony)
   state.js              — loadPlan, getPlan, getOtherPlans, getCurrentWeekIdx, getDaysTo, getDone, saveDone
   render.js             — renderHeader, renderDayCell, renderWeek, renderPhase, renderAll
   countdown.js          — updateCountdown
   main.js               — init (loadPlan → render), setInterval, event delegation na #plan
+CONTEXT.md              — kontekst biegowy użytkownika (VDOT, starty, zasady współpracy)
 plan_gdanski_2026.html  — oryginał (backup, nie ruszać)
-plan-polmaraton.md      — źródło planu warszawskiego
-tools/gen-plan.py       — generator warszawa-2027.js (etykiety tygodni, typy, meta w bloku USTAWIENIA)
+plan-maraton.md         — ŹRÓDŁO aktualnego planu maratońskiego (jedyne aktualne)
+plan-polmaraton.md      — źródło nieaktywnego planu warszawskiego (nieaktualne)
+tools/gen-plan.py       — generator (4-dniowy, pod półmaraton); nieużywany dla maratonu
 ```
 
 ## Struktura danych
@@ -50,7 +57,9 @@ Każdy plan to plik `js/plans/<id>.js` z `meta` i `phases`. Nowy plan = nowy pli
 
 Bez `quality` (Gdańsk) działa stara logika `.key` (Czw + Nd w test/start).
 
-Półmaraton Warszawski 2027: p1 baza (B1–B8), p2 Faza II (T1–T6), p3 Faza III (T7–T12), p4 Faza IV (T13–T18).
+Maraton Juranda 2027: p1 wprowadzenie (B1–B8, 4 dni), p2 Faza I (T1–T6), p3 Faza II (T7–T12), p4 Faza III (T13–T18).
+  Od T1 (30.11) 5 dni: meta.quality `{Śr:'J1', Sob:'J2'}` (długi w sobotę, niedziela wolna). Wprowadzenie p1: quality `{}`, sesja J we wtorek (B3–B8). Start 10 km w niedzielę T10, maraton w niedzielę T18.
+Półmaraton Warszawski 2027 (nieaktywny): p1 baza (B1–B8), p2 Faza II (T1–T6), p3 Faza III (T7–T12), p4 Faza IV (T13–T18).
 Gdańsk 2026: p1 (T1–T6), p2 (T7), p3 (T8–T12), p4 (T13–T14), p5 (T15–T16), p6 regeneracja (T17–T18).
 
 ## Stan aplikacji
